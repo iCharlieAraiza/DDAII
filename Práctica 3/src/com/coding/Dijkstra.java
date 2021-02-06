@@ -24,7 +24,6 @@ public class Dijkstra {
 
         for (int i = 0; i < distancia.length; i++){
             if(i==nodoFinal) {
-                //System.out.println("Distancia del nodo " + nodoOrigen + " al nodo " + i + " es " + distancia[i]);
                 return distancia[i];
             }
         }
