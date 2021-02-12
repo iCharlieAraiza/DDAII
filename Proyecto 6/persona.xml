@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11.0.5" class="java.beans.XMLDecoder">
+ <object class="com.coding.Persona" id="Persona0">
+  <void class="com.coding.Persona" method="getField">
+   <string>nombre</string>
+   <void method="set">
+    <object idref="Persona0"/>
+    <string>Juan</string>
+   </void>
+  </void>
+  <void class="com.coding.Persona" method="getField">
+   <string>edad</string>
+   <void method="set">
+    <object idref="Persona0"/>
+    <int>20</int>
+   </void>
+  </void>
+  <void class="com.coding.Persona" method="getField">
+   <string>genero</string>
+   <void method="set">
+    <object idref="Persona0"/>
+    <string>hombre</string>
+   </void>
+  </void>
+  <void class="com.coding.Persona" method="getField">
+   <string>estatus</string>
+   <void method="set">
+    <object idref="Persona0"/>
+    <boolean>true</boolean>
+   </void>
+  </void>
+ </object>
+</java>
