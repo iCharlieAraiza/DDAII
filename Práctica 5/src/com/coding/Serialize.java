@@ -4,9 +4,9 @@ import java.util.List;
 
 public abstract class Serialize {
     abstract String toXML();
-    abstract String fromXML();
+    abstract void fromXML(String xml);
     abstract String toJson();
-    abstract String fromJson();
+    abstract void fromJson(String json);
 
     public String createTag(String name, List<String> tags){
         String tagString = "";

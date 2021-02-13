@@ -8,11 +8,13 @@ public class Main {
         Person juan = new Person("Juan", 33, "Masculino", true);
         System.out.println(juan.toXML());
 
-        juan.test("<Persona><nombre>Juan</nombre>\n" +
-                "<edad>33</edad>\n" +
-                "<genero>Masculino</genero>\n" +
-                "<status>true</status>\n" +
-                "</Persona>");
+        juan.fromXML("<persona><nombre>María</nombre><edad>23</edad><genero>Femenino</genero></persona>");
+        System.out.println(juan.toJson());
+
+
+        juan.fromJson("{nombre:\"Carlos\",genero:\"Masculino\"}");
+        System.out.println(juan.toString());
+
 
     }
 }
