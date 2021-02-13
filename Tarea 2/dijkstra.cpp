@@ -17,19 +17,19 @@ class Arista;
 
 void Dijkstras();
 vector<Nodo*>* NodosAdyacentesRestantes(Nodo* nodo);
-Nodo* ExtractSmallest(vector<Nodo*>& nodes);
+Nodo* ExtractSmallest(vector<Nodo*>& nodos);
 int Distancia(Nodo* nodo1, Nodo* nodo2);
-bool Contiente(vector<Nodo*>& nodes, Nodo* nodo);
+bool Contiente(vector<Nodo*>& nodos, Nodo* nodo);
 void ImprimirMinimoCaminoA(Nodo* destino);
 
-vector<Nodo*> nodes;
+vector<Nodo*> nodos;
 vector<Arista*> aristas;
 
 class Nodo {
    public:
   Nodo(char id)
     : id(id), prev(NULL), distanciaDesdeInicio(INT_MAX) {
-    nodes.push_back(this);
+    nodos.push_back(this);
   }
 
    public:
@@ -86,8 +86,8 @@ void DijkstrasTest() {
 ///////////////////
 
 void Dijkstras() {
-  while (nodes.size() > 0) {
-    Nodo* minimo = ExtractSmallest(nodes);
+  while (nodos.size() > 0) {
+    Nodo* minimo = ExtractSmallest(nodos);
     vector<Nodo*>* nodosAdyacentes =
       NodosAdyacentesRestantes(minimo);
 
@@ -106,20 +106,20 @@ void Dijkstras() {
   }
 }
 
-Nodo* ExtractSmallest(vector<Nodo*>& nodes) {
-  int size = nodes.size();
+Nodo* ExtractSmallest(vector<Nodo*>& nodos) {
+  int size = nodos.size();
   if (size == 0) return NULL;
-  int smallestPosition = 0;
-  Nodo* minimo = nodes.at(0);
+  int minPosicion = 0;
+  Nodo* minimo = nodos.at(0);
   for (int i = 1; i < size; ++i) {
-    Nodo* current = nodes.at(i);
-    if (current->distanciaDesdeInicio <
+    Nodo* actual = nodos.at(i);
+    if (actual->distanciaDesdeInicio <
       minimo->distanciaDesdeInicio) {
-      minimo = current;
-      smallestPosition = i;
+      minimo = actual;
+      minPosicion = i;
     }
   }
-  nodes.erase(nodes.begin() + smallestPosition);
+  nodos.erase(nodos.begin() + minPosicion);
   return minimo;
 }
 
@@ -135,14 +135,14 @@ vector<Nodo*>* NodosAdyacentesRestantes(Nodo* nodo) {
     } else if (arista->nodo2 == nodo) {
       adyacente = arista->nodo1;
     }
-    if (adyacente && Contiente(nodes, adyacente)) {
+    if (adyacente && Contiente(nodos, adyacente)) {
       nodosAdyacentes->push_back(adyacente);
     }
   }
   return nodosAdyacentes;
 }
 
-// Return distancia between two connected nodes
+// Return distancia between two connected nodos
 int Distancia(Nodo* nodo1, Nodo* nodo2) {
   const int size = aristas.size();
   for (int i = 0; i < size; ++i) {
@@ -154,10 +154,10 @@ int Distancia(Nodo* nodo1, Nodo* nodo2) {
   return -1;  
 }
 
-bool Contiente(vector<Nodo*>& nodes, Nodo* nodo) {
-  const int size = nodes.size();
+bool Contiente(vector<Nodo*>& nodos, Nodo* nodo) {
+  const int size = nodos.size();
   for (int i = 0; i < size; ++i) {
-    if (nodo == nodes.at(i)) {
+    if (nodo == nodos.at(i)) {
       return true;
     }
   }
@@ -180,20 +180,20 @@ vector<Arista*>* AristasAdyacentes(vector<Arista*>& Edges, Nodo* nodo);
 void RemoverArista(vector<Arista*>& Edges, Arista* arista);
 
 vector<Arista*>* AristasAdyacentes(vector<Arista*>& aristas, Nodo* nodo) {
-  vector<Arista*>* adjacentEdges = new vector<Arista*>();
+  vector<Arista*>* aristasAdjacentes = new vector<Arista*>();
 
   const int size = aristas.size();
   for (int i = 0; i < size; ++i) {
     Arista* arista = aristas.at(i);
     if (arista->nodo1 == nodo) {
       cout << "adyacente: " << arista->nodo2->id << endl;
-      adjacentEdges->push_back(arista);
+      aristasAdjacentes->push_back(arista);
     } else if (arista->nodo2 == nodo) {
       cout << "adyacente: " << arista->nodo1->id << endl;
-      adjacentEdges->push_back(arista);
+      aristasAdjacentes->push_back(arista);
     }
   }
-  return adjacentEdges;
+  return aristasAdjacentes;
 }
 
 void RemoverArista(vector<Arista*>& aristas, Arista* arista) {
