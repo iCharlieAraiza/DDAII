@@ -6,7 +6,7 @@ public class Main {
 	// write your code here
 
         Person juan = new Person("Juan", 33, "Masculino", true);
-        System.out.println(juan.toXML());
+        System.out.println("\n"+"Pasar a XML: "+"\n"+juan.toXML());
 
         juan.fromXML("<persona><nombre>María</nombre><edad>23</edad><genero>Femenino</genero></persona>");
         System.out.println(juan.toJson());

@@ -31,14 +31,11 @@ public class Person extends Serialize{
 
     @Override
     public String toXML() {
-
         List<String> tags = new ArrayList<String>();
-
         tags.add( createTag("nombre", name) );
         tags.add( createTag("edad", Integer.toString(age)) );
         tags.add( createTag("genero", gender) );
         tags.add( createTag("status", status.toString()) );
-
         return super.createTag("Persona", tags);
     }
 
@@ -70,10 +67,6 @@ public class Person extends Serialize{
             endIndex = xml.indexOf("</status>");
             status = Boolean.parseBoolean(xml.substring(startIndex, endIndex));
         }
-
-
-        System.out.println(this.toString());
-
     }
 
     @Override
@@ -120,9 +113,6 @@ public class Person extends Serialize{
                     status = Boolean.parseBoolean(dato);
                     break;
             }
-
-
         }
-
     }
 }
