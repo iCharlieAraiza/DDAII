@@ -22,7 +22,7 @@ public class LectorAchivos {
         while( (s = br.readLine()) != null){
             texto.append(s);
         }
-        br.close();
+        br.close();¡
         return texto.toString();
     }
 }
