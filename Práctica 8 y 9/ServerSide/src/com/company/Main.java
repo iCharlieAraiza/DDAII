@@ -43,36 +43,7 @@ public class Main {
                 practica9B();
                 break;
             case 4:
-
-                ConnectionDB db = new ConnectionDB();
-                ArrayList<Persona> personas = (ArrayList<Persona>) db.getAllTasks();
-
-                for(Persona persona: personas){
-                    System.out.println(persona.toString());
-                }
-
-                JsonObject jsonObj = new JsonObject();
-                JsonArray jsonArray2 = new Gson().toJsonTree(personas).getAsJsonArray();
-                System.out.println(jsonArray2.toString());
-
-                try{
-                    System.out.println("Esperando una conexión...");
-
-                    myClient = myServer.accept();
-                    System.out.println("Se ha aceptado la conexión.");
-
-                    InputStreamReader streamSocket = new InputStreamReader(myClient.getInputStream());
-                    PrintWriter socketWritter = new PrintWriter(myClient.getOutputStream(),true);
-
-                    socketWritter.println(jsonArray2.toString());
-                    System.out.println("Mensaje recibido");
-
-                }catch (Exception e){
-                    System.out.println(e.getMessage());
-                }
-
-
-
+                practica10();
                 break;
             default:
                 System.out.println("Ups, has agregado una opción no válida.");
@@ -168,6 +139,33 @@ public class Main {
             }catch (Exception e){
                 System.out.println(e.getMessage());
             }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    static void practica10() throws SQLException, ClassNotFoundException {
+        ConnectionDB db = new ConnectionDB();
+        ArrayList<Persona> personas = (ArrayList<Persona>) db.getAllPersonas();
+
+        for(Persona persona: personas){
+            System.out.println(persona.toString());
+        }
+
+        JsonArray jsonArray2 = new Gson().toJsonTree(personas).getAsJsonArray();
+        System.out.println(jsonArray2.toString());
+
+        try{
+            System.out.println("Esperando una conexión...");
+
+            myClient = myServer.accept();
+            System.out.println("Se ha aceptado la conexión.");
+
+            PrintWriter socketWritter = new PrintWriter(myClient.getOutputStream(),true);
+
+            socketWritter.println(jsonArray2.toString());
+            System.out.println("Mensaje recibido");
 
         }catch (Exception e){
             System.out.println(e.getMessage());

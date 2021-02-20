@@ -28,8 +28,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 	// write your code here
-
-
         int op = 4;
         switch (op){
             case 1:
@@ -44,26 +42,7 @@ public class Main {
                 practica9B();
                 break;
             case 4:
-                try {
-                    System.out.println("Conectando al servidor");
-                    myClient = new Socket(host, port);
-
-                    InputStreamReader streamSocket = new InputStreamReader(myClient.getInputStream());
-                    BufferedReader br =new BufferedReader(streamSocket);
-
-                    String jsonString = br.readLine();
-
-                    Gson gson =new Gson();
-                    TypeToken<List<Persona>> token = new TypeToken<List<Persona>>() {};
-                    List<Persona> personas = gson.fromJson(jsonString, token.getType());
-
-                    for (Persona persona: personas){
-                        System.out.println(persona.toString());
-                    }
-
-                }catch (Exception ex){
-                    System.out.println(ex);
-                }
+                practica10();
                 break;
 
             default:
@@ -77,8 +56,6 @@ public class Main {
         try {
             System.out.println("Conectado al servidor");
             System.out.println("Esperando por una conexión...");
-
-
             System.out.println("Conectando al servidor");
             myClient = new Socket(host, port);
 
@@ -137,8 +114,6 @@ public class Main {
         }
     }
 
-
-
     static void practica9B(){
         try {
             System.out.println("Conectando al servidor");
@@ -148,6 +123,29 @@ public class Main {
             PrintWriter socketWriter =new PrintWriter( myClient.getOutputStream(), true);
 
             socketWriter.println(persona.toJson());
+
+        }catch (Exception ex){
+            System.out.println(ex);
+        }
+    }
+
+    static void practica10(){
+        try {
+            System.out.println("Conectando al servidor...\n");
+            myClient = new Socket(host, port);
+
+            InputStreamReader streamSocket = new InputStreamReader(myClient.getInputStream());
+            BufferedReader br =new BufferedReader(streamSocket);
+
+            String jsonString = br.readLine();
+
+            Gson gson =new Gson();
+            TypeToken<List<Persona>> token = new TypeToken<List<Persona>>() {};
+            List<Persona> personas = gson.fromJson(jsonString, token.getType());
+
+            for (Persona persona : personas){
+                System.out.println(persona.toString());
+            }
 
         }catch (Exception ex){
             System.out.println(ex);

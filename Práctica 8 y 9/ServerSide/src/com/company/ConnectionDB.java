@@ -44,7 +44,7 @@ public class ConnectionDB
 
     }
 
-    public List<Persona> getAllTasks() throws SQLException, ClassNotFoundException {
+    public List<Persona> getAllPersonas() throws SQLException, ClassNotFoundException {
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM persona");
         List personList = new ArrayList<Persona>();
