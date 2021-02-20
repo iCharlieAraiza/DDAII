@@ -1,6 +1,8 @@
 package com.company;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Java MySQL PreparedStatement INSERT example.
@@ -41,6 +43,22 @@ public class ConnectionDB
         System.out.println("✅ Se ha cerrado correctamente la conexión ❌ 🔒 ");
 
     }
+
+    public List<Persona> getAllTasks() throws SQLException, ClassNotFoundException {
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM persona");
+        List personList = new ArrayList<Persona>();
+
+        while(rs.next()){
+            personList.add(new Persona(rs.getString("nombre"), rs.getInt("edad"), rs.getString("genero")));
+        }
+
+        conn.close();
+        System.out.println("✅ Se ha cerrado correctamente la conexión ❌ 🔒 ");
+
+        return personList;
+    }
+
 
 
 /*

@@ -1,11 +1,17 @@
 package com.company;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -23,9 +29,9 @@ public class Main {
     private static Socket myClient = null;
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        int op = 1;
+        int op = 4;
         switch (op){
             case 1:
                 practica8();
@@ -35,6 +41,38 @@ public class Main {
                 break;
             case 3:
                 practica9B();
+                break;
+            case 4:
+
+                ConnectionDB db = new ConnectionDB();
+                ArrayList<Persona> personas = (ArrayList<Persona>) db.getAllTasks();
+
+                for(Persona persona: personas){
+                    System.out.println(persona.toString());
+                }
+
+                JsonObject jsonObj = new JsonObject();
+                JsonArray jsonArray2 = new Gson().toJsonTree(personas).getAsJsonArray();
+                System.out.println(jsonArray2.toString());
+
+                try{
+                    System.out.println("Esperando una conexión...");
+
+                    myClient = myServer.accept();
+                    System.out.println("Se ha aceptado la conexión.");
+
+                    InputStreamReader streamSocket = new InputStreamReader(myClient.getInputStream());
+                    PrintWriter socketWritter = new PrintWriter(myClient.getOutputStream(),true);
+
+                    socketWritter.println(jsonArray2.toString());
+                    System.out.println("Mensaje recibido");
+
+                }catch (Exception e){
+                    System.out.println(e.getMessage());
+                }
+
+
+
                 break;
             default:
                 System.out.println("Ups, has agregado una opción no válida.");

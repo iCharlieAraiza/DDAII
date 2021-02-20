@@ -1,11 +1,18 @@
 package com.coding;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
@@ -23,7 +30,7 @@ public class Main {
 	// write your code here
 
 
-        int op = 1;
+        int op = 4;
         switch (op){
             case 1:
                 practica8();
@@ -36,12 +43,32 @@ public class Main {
                 inputPersona();
                 practica9B();
                 break;
+            case 4:
+                try {
+                    System.out.println("Conectando al servidor");
+                    myClient = new Socket(host, port);
+
+                    InputStreamReader streamSocket = new InputStreamReader(myClient.getInputStream());
+                    BufferedReader br =new BufferedReader(streamSocket);
+
+                    String jsonString = br.readLine();
+
+                    Gson gson =new Gson();
+                    TypeToken<List<Persona>> token = new TypeToken<List<Persona>>() {};
+                    List<Persona> personas = gson.fromJson(jsonString, token.getType());
+
+                    for (Persona persona: personas){
+                        System.out.println(persona.toString());
+                    }
+
+                }catch (Exception ex){
+                    System.out.println(ex);
+                }
+                break;
+
             default:
                 System.out.println("Ups, has agregado una opción no válida.");
         }
-
-
-
     }
 
 
