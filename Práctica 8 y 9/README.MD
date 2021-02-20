@@ -4,7 +4,7 @@ Prácticas de la asignatura de Desarrollo de Aplicaciones II 🖥
 
 ### Práctica 8
 
-Chat usando sockets en Java
+- 💬 Chat usando sockets en Java
 
 ### Práctica 9 
 
@@ -13,4 +13,4 @@ Chat usando sockets en Java
 
 ### Práctica 10
 
-- Leer los archivos de la base de datos, convertirlos en JSON y enviarlos a través de sockets.
+- 📖 Leer los archivos de la base de datos, convertirlos en JSON y enviarlos a través de sockets.
