@@ -24,7 +24,7 @@ public class Main {
             //Mensaje
             String sendMessage, receivedMessage;
 
-            sendMessage = "Hola, soy Carlos";
+            sendMessage = "PUT\n Hola!!";
             System.out.println("Enviado mensaje...");
             socketWriter.println(sendMessage);
 
