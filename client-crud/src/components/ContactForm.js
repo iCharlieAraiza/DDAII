@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import UserService from '../service/PersonaService'
 
 const ContactForm = () => {
     
@@ -11,6 +12,13 @@ const ContactForm = () => {
 
     const [formValues, setFormValues] = useState(initialFieldValues);
     
+    let json;
+
+    useEffect(()=>{
+        UserService.getUsers().then((respone)=>{
+            console.log("hola",respone.data);
+        })
+    })
     return(
     <>
         <form autoComplete="off">
@@ -41,7 +49,7 @@ const ContactForm = () => {
             </div>
 
             <div className="form-container-input">
-                <button>Enviar</button>
+                <input type="button" value="Enviar" className="button"/>
             </div>
 
 
