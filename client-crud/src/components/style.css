@@ -1,0 +1,24 @@
+h1{
+    font-size: 38px!important;;
+}
+
+
+.form-container-input{
+    margin-bottom: 10px;
+}
+
+.form-input, select{
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid gray;
+    font-size: 14px;
+}
+
+label{
+    font-size: 12px!important;
+}
+
+input:focus,select:focus{
+    outline: none;
+}
