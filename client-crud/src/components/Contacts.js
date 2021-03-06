@@ -1,26 +1,15 @@
 import {React, useState, useEffect} from 'react';
 import UserService from '../service/PersonaService';
-
+import axios from 'axios'
 
 import ContactForm from "./ContactForm"
 import './style.css'
 
-const Contacts = ()=>{
-
-    const initialValue = {
-        nombre: '',
-        edad: 0,
-        genero: '',
-        estatus: ''
-    }
+const Contacts = ({value}, {setValue})=>{
     
-    const [value, setValue] = useState(initialValue);
+    
 
-    useEffect(()=>{
-        UserService.getUsers().then((response)=>{
-            setValue(response);
-        });
-    });
+
 
     return(
         <>

@@ -11,14 +11,8 @@ const ContactForm = () => {
     }
 
     const [formValues, setFormValues] = useState(initialFieldValues);
-    
-    let json;
 
-    useEffect(()=>{
-        UserService.getUsers().then((respone)=>{
-            console.log("hola",respone.data);
-        })
-    })
+
     return(
     <>
         <form autoComplete="off">
