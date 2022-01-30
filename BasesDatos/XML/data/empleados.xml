@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+	<employee id="1"><name>Luis</name><lastName>Murillo</lastName><age>38</age><gender>M</gender><position>Gerente</position></employee>
+    <employee id="2"><name>Alberto</name><lastName>Lara</lastName><age>35</age><gender>M</gender><position>Jefe de Ventas</position></employee>
+    <employee id="3"><name>Carolina</name><lastName>Mireles</lastName><age>35</age><gender>M</gender><position>Jefe de Mercadotecnia</position></employee>
+    <employee id="4"><name>Luisa</name><lastName>Saltillo</lastName><age>39</age><gender>M</gender><position>Cajero</position></employee>
+</employees>
